@@ -14,7 +14,7 @@ trait FieldDataParser {
   }
 
   def parseString(string: String, start: Int, end: Int): String = {
-    parse((s: String) => s, string, start, end)
+    parse(_.trim, string, start, end)
   }
 
   def parseCurrency(string: String, start: Int, end: Int): Double = {
