@@ -3,10 +3,10 @@ import org.scalatest.{FlatSpec, Matchers}
 class InputDataDTOSpec extends FlatSpec with Matchers {
   "InputDataDTO" should "create an object" in {
     val exampleString = "19463031 Half Lemonade Half Tea                                      00000850 00000549 00001500 00000000 00000002 00000000 NNNNYNNNN   12x12oz"
-    val obj = InputDataDTO.fromString(exampleString)
+    val obj = InputDataDTO(exampleString)
 
     obj.productId should be (19463031)
-    obj.productDescr should include ("Lemonade")
+    obj.productDesc should include ("Lemonade")
 
     obj.regSingularPrice shouldBe 8.5
     obj.regSplitPrice shouldBe 15.0

@@ -1,24 +1,21 @@
 // TODO: fix Currency to something more appropriate
 
-// TODO: confirm productId can be an Int and not a Long
-case class InputDataDTO(productId: Int, productDescr: String,
+case class InputDataDTO(productId: Int, productDesc: String,
                         regSingularPrice: Double, promoSingularPrice: Double,
                         regSplitPrice: Double, promoSplitPrice: Double,
                         regForX: Int, promoForX: Int,
                         flags: Seq[Boolean], productSize: String)
 
 object InputDataDTO extends FieldDataParser {
-
-  def fromString(inputData: String) = {
-    InputDataDTO(parseNumber(inputData, 0, 8),
-      parseString(inputData, 9, 68),
-      parseCurrency(inputData, 70, 77),
-      parseCurrency(inputData, 79, 86),
-      parseCurrency(inputData, 87, 95),
-      parseCurrency(inputData, 96, 104),
-      parseNumber(inputData, 105, 113),
-      parseNumber(inputData, 114, 122),
-      parseFlags(inputData, 124, 132),
-      parseString(inputData, 133, 142))
-  }
+  def apply(inputString: String): InputDataDTO =
+    new InputDataDTO(parseNumber(inputString, 0, 8),
+      parseString(inputString, 9, 68),
+      parseCurrency(inputString, 70, 77),
+      parseCurrency(inputString, 79, 86),
+      parseCurrency(inputString, 87, 95),
+      parseCurrency(inputString, 96, 104),
+      parseNumber(inputString, 105, 113),
+      parseNumber(inputString, 114, 122),
+      parseFlags(inputString, 124, 132),
+      parseString(inputString, 133, 142))
 }
