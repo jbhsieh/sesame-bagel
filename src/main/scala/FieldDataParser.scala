@@ -1,25 +1,28 @@
 
 trait FieldDataParser {
 
+  // keep the indices all zero-based because it's Scala and since given inclusive change is required either way.
+  // (field/type, string, indices)
+  // pass in parserType or how to infer?
+  def parse[B](bParser: (String)=>B, string: String, start: Int, end: Int): B = {
+    bParser(string.substring(start, end))
+  }
+
   // take the next 8 chars and create an Int from them
   def parseNumber(string: String, start: Int, end: Int): Int = {
-    val length = end - start
-//    assert(length == 8)
-    string.substring(start, end).toInt
+    parse(_.toInt, string, start, end)
   }
 
   def parseString(string: String, start: Int, end: Int): String = {
-    val length = end - start
-    string.substring(start, end)
+    parse((s: String) => s, string, start, end)
   }
 
   def parseCurrency(string: String, start: Int, end: Int): Double = {
-    val length = end - start
-    string.substring(start, end).toInt / 100.0
+    parse((_.toInt / 100.0), string, start, end)
   }
 
   def parseFlags(string: String, start:Int, end: Int): Seq[Boolean] = {
-    val length = end - start
-    string.substring(start, end).map[Boolean](_ == 'Y')
+    val flagParser = (string: String) => string.map[Boolean](_ == 'Y')
+    parse(flagParser, string, start, end)
   }
 }
