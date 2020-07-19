@@ -16,6 +16,6 @@ object InputDataDTO extends FieldDataParser {
       parseCurrency(inputString, 96, 104),
       parseNumber(inputString, 105, 113),
       parseNumber(inputString, 114, 122),
-      parseFlags(inputString, 124, 132),
+      parseFlags(inputString, 123, 132),
       parseString(inputString, 133, 142))
 }
