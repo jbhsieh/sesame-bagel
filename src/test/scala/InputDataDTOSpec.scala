@@ -18,7 +18,7 @@ class InputDataDTOSpec extends FlatSpec with Matchers {
 
     obj.flags should contain(false)
     obj.flags should contain(true)
-    obj.flags(3) should equal (true)
+    obj.flags(4) should equal (true)
     obj.productSize should equal ("12x12oz")
   }
 }

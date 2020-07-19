@@ -9,6 +9,7 @@ Swiftly take home
 
 ## Usage
 - sbt "run sample-filename"
+- creates a collection of ProductRecords and just prints them to the console.
 
 ## Tests
 - sbt test

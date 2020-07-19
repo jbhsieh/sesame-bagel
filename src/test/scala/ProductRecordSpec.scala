@@ -45,5 +45,7 @@ class ProductRecordSpec extends FlatSpec with Matchers {
   it should "return None if has neither pricing value" in {
     ProductRecord.convertPricing(0, 0, 0) shouldBe None
   }
-  it should "throw an exception if it has both pricing types" in pending
+  it should "throw an exception if it has both pricing types" in {
+    the [RuntimeException] thrownBy (ProductRecord.convertPricing(10.00, 20.00, 2)) should have message ("cannot have both single and split pricing")
+  }
 }

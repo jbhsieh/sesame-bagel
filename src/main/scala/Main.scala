@@ -4,11 +4,10 @@ object Main extends App {
   if (args.size > 0) {
     val filename = args(0)
     Console.println("processing %s".format(filename))
-
-    for (line <- Source.fromFile(filename).getLines()) {
-      println(line)
-      println(ProductRecord(InputDataDTO(line)))
-    }
+    val bufferedSource = Source.fromFile(filename)
+    val recordCollection = for (line <- bufferedSource.getLines()) yield ProductRecord(InputDataDTO(line))
+    for (record <- recordCollection) Console.println(record)
+    bufferedSource.close
   } else {
     Console.println("thanks for the coconuts")
   }

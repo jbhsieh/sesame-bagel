@@ -21,7 +21,7 @@ object ProductRecord {
       case (0.0, 0.0) => None
       case (single, 0.0) => Some("$%.2f".format(single), single)
       case (0.0, split) => Some("%d for $%.2f".format(forX, split), decimalRounding(splitPrice / forX.toDouble))
-      // TODO: case _ => throw some exception
+      case (_, _) => throw new RuntimeException("cannot have both single and split pricing")
     }
   }
 
